@@ -1,13 +1,13 @@
-﻿using AngleSharpSubmitTest.Models;
-using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Web;
-using System.Web.Mvc;
-
-namespace AngleSharpSubmitTest.Controllers
+﻿namespace AngleSharp.TestSite.Controllers
 {
+    using AngleSharp.TestSite.Models;
+    using System;
+    using System.Collections.Generic;
+    using System.IO;
+    using System.Linq;
+    using System.Web;
+    using System.Web.Mvc;
+
     public class TestsController : Controller
     {
         #region Urlencode

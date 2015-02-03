@@ -1,10 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-
-namespace AngleSharpSubmitTest.Models
+﻿namespace AngleSharp.TestSite.Models
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Web;
+
     public class FilesModel
     {
         public String Name

@@ -1,7 +1,7 @@
-﻿using System;
-
-namespace AngleSharpSubmitTest.Models
+﻿namespace AngleSharp.TestSite.Models
 {
+    using System;
+
     public class NormalModel
     {
         public String Name
