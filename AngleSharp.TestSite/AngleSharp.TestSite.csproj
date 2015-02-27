@@ -142,7 +142,9 @@
     <Content Include="Views\Tests\PostMultipartNormal.cshtml" />
     <Content Include="Views\Tests\PostMultipartFiles.cshtml" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Content Include="Views\Tests\PostAnything.cshtml" />
+  </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
   </ItemGroup>

@@ -76,6 +76,24 @@
             return Test(model.Name == "Test" && model.Number == 1 && model.IsActive && Evaluate(model.Files));
         }
 
+        [HttpGet]
+        public ViewResult PostAnything()
+        {
+            var emptyModel = new Dictionary<String, String>();
+            return View(emptyModel);
+        }
+
+        [HttpPost]
+        public ViewResult PostAnything(String _ = null)
+        {
+            var model = new Dictionary<String, String>();
+
+            foreach (var key in Request.Form.AllKeys)
+                model[key] = Request.Form.Get(key);
+
+            return View(model);
+        }
+
         #endregion
 
         #region Helpers

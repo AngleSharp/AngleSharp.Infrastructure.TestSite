@@ -1,0 +1,30 @@
+﻿@model Dictionary<String, String>
+@{
+    ViewBag.Title = "PostAnything";
+}
+<h1>PostAnything</h1>
+@using (Html.BeginForm(null, null, FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <h2>Anything</h2>
+        <hr />
+
+        <div id="result">
+        @foreach (var pair in Model)
+        {
+            <div class="item">
+                <span class="key">@pair.Key</span>
+                <span class="value">@pair.Value</span>
+            </div>
+        }
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Post" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+}
