@@ -1,0 +1,14 @@
+﻿@using AngleSharp.TestSite.Controllers
+@using System.Reflection
+@{
+    ViewBag.Title = "Index";
+}
+
+<h1>Available test pages</h1>
+<ul>
+    @foreach (var method in typeof(TestsController).GetMethods(BindingFlags.Public | BindingFlags.Instance | BindingFlags.DeclaredOnly).Where(m => m.GetCustomAttribute<HttpGetAttribute>() != null))
+    {
+        <li><a href="/@method.Name">@method.Name</a></li>
+    }
+</ul>
+

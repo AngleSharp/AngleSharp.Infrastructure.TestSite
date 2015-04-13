@@ -1,15 +1,24 @@
 ﻿namespace AngleSharp.TestSite.Controllers
 {
-    using AngleSharp.TestSite.Models;
     using System;
     using System.Collections.Generic;
     using System.IO;
     using System.Linq;
     using System.Web;
     using System.Web.Mvc;
+    using AngleSharp.TestSite.Models;
 
     public class TestsController : Controller
     {
+        #region Index
+
+        public ViewResult Index()
+        {
+            return View();
+        }
+
+        #endregion
+
         #region Urlencode
 
         [HttpGet]
