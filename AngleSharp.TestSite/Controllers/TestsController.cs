@@ -105,6 +105,17 @@
 
         #endregion
 
+        #region Headers
+
+        [HttpGet]
+        public ContentResult Header(String id = "referer")
+        {
+            var value = Request.Headers[id];
+            return Content(value, "text/plain");
+        }
+
+        #endregion
+
         #region Helpers
 
         Boolean Evaluate(List<HttpPostedFileBase> files)
