@@ -1,6 +1,7 @@
 ﻿namespace AngleSharpSubmitTest.Controllers
 {
     using AngleSharpSubmitTest.Models;
+    using System.IO;
     using System.Web.Mvc;
 
     public class EchoController : Controller
@@ -11,6 +12,7 @@
         {
             var form = Request.Form;
             var count = form.Count;
+            var reader = new StreamReader(Request.InputStream);
             var fields = new FormEntryModel[count];
 
             for (int i = 0; i < count; i++)
@@ -24,7 +26,8 @@
 
             return View(new FormModel
             {
-                Fields = fields
+                Fields = fields,
+                Content = reader.ReadToEnd()
             });
         }
     }

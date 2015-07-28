@@ -6,6 +6,8 @@
     public class FormModel
     {
         public IEnumerable<FormEntryModel> Fields { get; set; }
+
+        public String Content { get; set; }
     }
 
     public class FormEntryModel
