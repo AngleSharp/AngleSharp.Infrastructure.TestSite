@@ -10,6 +10,12 @@
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
 
             routes.MapRoute(
+                name: "Echo",
+                url: "Echo",
+                defaults: new { controller = "Echo", action = "Index" }
+            );
+
+            routes.MapRoute(
                 name: "Default",
                 url: "{action}/{id}",
                 defaults: new { controller = "Tests", action = "Index", id = UrlParameter.Optional }

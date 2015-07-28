@@ -1,0 +1,15 @@
+﻿@model AngleSharpSubmitTest.Models.FormModel
+@{
+    ViewBag.Title = "Echo";
+}
+<h1>Result</h1>
+
+<table>
+    @foreach (var entry in Model.Fields)
+    {
+        <tr>
+            <th>@entry.Name</th>
+            <td>@entry.Value</td>
+        </tr>
+    }
+</table>
