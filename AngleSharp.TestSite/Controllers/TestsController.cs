@@ -1,12 +1,14 @@
 ﻿namespace AngleSharp.TestSite.Controllers
 {
+    using AngleSharp.TestSite.Models;
     using System;
     using System.Collections.Generic;
     using System.IO;
     using System.Linq;
+    using System.Text;
+    using System.Threading.Tasks;
     using System.Web;
     using System.Web.Mvc;
-    using AngleSharp.TestSite.Models;
 
     public class TestsController : Controller
     {
@@ -116,7 +118,37 @@
 
         #endregion
 
+        #region Chunked
+
+        [HttpGet]
+        public async Task Chunked()
+        {
+            Write(@"<!DOCTYPE html>
+<html lang=en>
+<head>
+<meta charset='utf-8'>
+<title>Chunked transfer encoding test</title>
+</head>
+<body>");
+            Write("<h1>Chunked transfer encoding test</h1>");
+            await Task.Delay(100);
+            Write("<h5>This is a chunked response after 100 ms.</h5>");
+            await Task.Delay(1000);
+            Write("<h5>This is a chunked response after 1 second. The server should not close the stream before all chunks are sent to a client.</h5>");
+            Write("</body></html>");
+            HttpContext.Response.Close();
+        }
+
+        #endregion
+
         #region Helpers
+
+        void Write(String content)
+        {
+            var buffer = Encoding.UTF8.GetBytes(content);
+            HttpContext.Response.OutputStream.Write(buffer, 0, buffer.Length);
+            HttpContext.Response.Flush();
+        }
 
         Boolean Evaluate(List<HttpPostedFileBase> files)
         {
