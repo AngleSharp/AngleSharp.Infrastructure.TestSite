@@ -16,6 +16,12 @@
             );
 
             routes.MapRoute(
+                name: "Static",
+                url: "static/{action}/{id}",
+                defaults: new { controller = "Static" }
+            );
+
+            routes.MapRoute(
                 name: "Default",
                 url: "{action}/{id}",
                 defaults: new { controller = "Tests", action = "Index", id = UrlParameter.Optional }
