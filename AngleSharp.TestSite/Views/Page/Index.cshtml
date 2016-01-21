@@ -1,0 +1,23 @@
+﻿@{ Layout = null; }<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>AngleSharp Resource Loading</title>
+    <link rel="stylesheet" type="text/css" href="~/Content/style.css" />
+    <link rel="stylesheet" type="text/css" href="~/Content/other.css" />
+</head>
+<body>
+    <h1>Resource Loading Test</h1>
+    <img src="~/Content/200w.gif" />
+    <p>This page is sparse (and ugly) on purpose. It was never meant to be perceived by the human eye.</p>
+    <p>Besides some actual resources, this page also contains some invalid links.</p>
+    <iframe src="~/" width="200" height="200"></iframe>
+    <p>For example, the following image is not present.</p>
+    <img src="~/Content/foo.jpg" />
+    <p>Also iframes without content have to be handled.</p>
+    <iframe src="~/Content/empty.html" width="200" height="200"></iframe>
+    <p>Also from the scripts only one is available.</p>
+    <script src="~/Content/jquery.js"></script>
+    <script src="~/Content/jquery.foo.js"></script>
+</body>
+</html>
