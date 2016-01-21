@@ -16,6 +16,12 @@
             );
 
             routes.MapRoute(
+                name: "Page",
+                url: "Page",
+                defaults: new { controller = "Page", action = "Index" }
+            );
+
+            routes.MapRoute(
                 name: "Static",
                 url: "static/{action}/{id}",
                 defaults: new { controller = "Static" }
