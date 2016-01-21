@@ -2,13 +2,17 @@
 @using System.Reflection
 @{
     ViewBag.Title = "Index";
+    var Methods = typeof(TestsController).
+        GetMethods(BindingFlags.Public | BindingFlags.Instance | BindingFlags.DeclaredOnly).
+        Where(m => m.GetCustomAttribute<HttpGetAttribute>() != null);
 }
 
 <h1>Available test pages</h1>
 <ul>
-    @foreach (var method in typeof(TestsController).GetMethods(BindingFlags.Public | BindingFlags.Instance | BindingFlags.DeclaredOnly).Where(m => m.GetCustomAttribute<HttpGetAttribute>() != null))
-    {
-        <li><a href="/@method.Name">@method.Name</a></li>
-    }
+@foreach (var method in Methods)
+{
+    <li><a href="/@method.Name">@method.Name</a></li>
+}
+    <li>@Html.ActionLink("ResourceTestPage", "Index", "Page")</li>
 </ul>
 
