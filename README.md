@@ -57,6 +57,7 @@ sites at capture time.
 | `/test-cases/kommersant` | GET | Large gzip-encoded page (replaces `kommersant.ru/rss-list`; guards against a buffer-too-small bug). |
 | `/test-cases/eurobelarus` | GET | Gzip-encoded page (replaces `eurobelarus.info`; guards against a stuck stream). |
 | `/test-cases/europarl` | GET | A valid HTML document (replaces the `europarl.europa.eu` PDF URL). |
+| `/test-cases/html` | GET | Moby-Dick page (replaces `httpbingo.org/html`), served with a negotiated `Content-Encoding` (Brotli, Deflate, or gzip per `Accept-Encoding`). |
 | `/test-cases/status/:code` | GET | Responds with the given status code (100–999). |
 | `/test-cases/methods/get` | GET | `200` with an empty body for `GET`, otherwise `405`. |
 | `/test-cases/methods/post` | POST | `200` for `POST` with a body reflecting the request body, otherwise `405`. |

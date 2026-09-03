@@ -1,6 +1,6 @@
 import { readFileSync } from 'node:fs';
 import { fileURLToPath } from 'node:url';
-import { gzipSync } from 'node:zlib';
+import { brotliCompressSync, deflateSync, gzipSync } from 'node:zlib';
 import type { FastifyInstance, FastifyReply, FastifyRequest } from 'fastify';
 
 // Captured real-world pages live next to this module's compiled/dev output.
@@ -19,6 +19,32 @@ const pages = {
   eurobelarus: loadAsset('eurobelarus.html'),
   europarl: loadAsset('europarl.html'),
 };
+
+// The /html page is pre-compressed with every supported content coding so it can
+// be served back in whichever the client advertises (Brotli and Deflate included).
+const htmlRaw = readFileSync(`${assetsDir}/html.html`);
+const htmlEncodings: Record<string, Buffer> = {
+  br: brotliCompressSync(htmlRaw),
+  gzip: gzipSync(htmlRaw),
+  deflate: deflateSync(htmlRaw),
+};
+
+/**
+ * Picks a content coding from the request's `Accept-Encoding`, preferring Brotli,
+ * then Deflate, then gzip, so those code paths are exercised on the client side.
+ */
+function negotiateEncoding(acceptEncoding: string | undefined): string | null {
+  const accepted = (acceptEncoding ?? '')
+    .toLowerCase()
+    .split(',')
+    .map((part) => part.split(';')[0].trim());
+  for (const coding of ['br', 'deflate', 'gzip']) {
+    if (accepted.includes(coding)) {
+      return coding;
+    }
+  }
+  return null;
+}
 
 /** Serves a captured page, gzip-encoded to exercise the decoding path. */
 function sendGzipHtml(reply: FastifyReply, page: { gzip: Buffer }): FastifyReply {
@@ -120,6 +146,17 @@ export function registerTestCases(app: FastifyInstance): void {
   app.get('/test-cases/europarl', async (_request, reply) =>
     reply.header('Content-Type', 'text/html; charset=utf-8').send(pages.europarl.raw),
   );
+
+  // Moby-Dick page (replaces httpbingo.org/html), served with a negotiated
+  // content coding so Brotli and Deflate decompression are exercised too.
+  app.get('/test-cases/html', async (request, reply) => {
+    reply.header('Content-Type', 'text/html; charset=utf-8').header('Vary', 'Accept-Encoding');
+    const coding = negotiateEncoding(request.headers['accept-encoding']);
+    if (coding) {
+      return reply.header('Content-Encoding', coding).send(htmlEncodings[coding]);
+    }
+    return reply.send(htmlRaw);
+  });
 
   // --- Status code passthrough ---
   // Written on the raw response because Fastify rejects status codes above 599,
