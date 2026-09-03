@@ -2,15 +2,9 @@
 
 The webpage to run reliable online integration tests against.
 
-This is the site exercised by the AngleSharp integration tests (e.g. the
-`FormSubmitTests` and `ContextLoading` fixtures in AngleSharp.Core). It exposes
-a handful of endpoints that echo requests, validate form submissions, stream a
-chunked response, and serve a page with (deliberately partly-broken) resources.
+This is the site exercised by the AngleSharp integration tests (e.g. the `FormSubmitTests` and `ContextLoading` fixtures in AngleSharp.Core). It exposes a handful of endpoints that echo requests, validate form submissions, stream a chunked response, and serve a page with (deliberately partly-broken) resources.
 
-Originally an ASP.NET MVC application, it has been ported to a Node.js
-[Fastify](https://fastify.dev) app written in TypeScript. The behavior — the
-HTML produced and the way requests are validated — is preserved. The original
-sources are kept for reference under [`legacy/`](legacy/).
+Originally an ASP.NET MVC application, it has been ported to a Node.js [Fastify](https://fastify.dev) app written in TypeScript. The behavior — the HTML produced and the way requests are validated — is preserved. The original sources are kept for reference under [`legacy/`](legacy/).
 
 ## Getting started
 
@@ -26,8 +20,7 @@ npm run build    # compile TypeScript into dist/
 npm start        # run the compiled server
 ```
 
-The listen port and host can be overridden with the `PORT` (default `8080`) and
-`HOST` (default `0.0.0.0`) environment variables.
+The listen port and host can be overridden with the `PORT` (default `8080`) and `HOST` (default `0.0.0.0`) environment variables.
 
 ## Endpoints
 
@@ -60,7 +53,4 @@ docker run --rm -p 8080:8080 anglesharp-testsite
 
 ## Continuous delivery
 
-The [`Build and publish Docker image`](.github/workflows/docker.yml) GitHub
-Actions workflow type-checks and builds the app, then builds a Docker image and
-publishes it to the GitHub Container Registry (GHCR) as
-`ghcr.io/<owner>/<repo>` on pushes to `master` and on tags.
+The [`Build and publish Docker image`](.github/workflows/docker.yml) GitHub Actions workflow type-checks and builds the app, then builds a Docker image and publishes it to the GitHub Container Registry (GHCR) as `ghcr.io/anglesharp/anglesharp.infrastructure.testsite` on pushes to `main`.
