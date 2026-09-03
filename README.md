@@ -39,6 +39,7 @@ The listen port and host can be overridden with the `PORT` (default `8080`) and 
 | `/Page` | GET | Resource-loading test page (references some missing resources on purpose). |
 | `/static/Css/:id` | GET | Returns randomized `text/css` content. |
 | `/Content/*` | GET | Static assets (`style.css`, `jquery.js`, `200w.gif`). |
+| `/ws-echo` | WS | WebSocket endpoint that echoes back every message it receives. |
 
 Routing is case-insensitive, matching the original ASP.NET behavior.
 
