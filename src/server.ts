@@ -2,6 +2,7 @@ import { fileURLToPath } from 'node:url';
 import Fastify, { type FastifyInstance } from 'fastify';
 import fastifyStatic from '@fastify/static';
 import { registerRoutes } from './routes.js';
+import { registerTestCases } from './testcases.js';
 
 // `public/` sits next to `src/` (dev) and `dist/` (prod) — one level up from here.
 const publicDir = fileURLToPath(new URL('../public', import.meta.url));
@@ -29,6 +30,7 @@ export async function buildServer(): Promise<FastifyInstance> {
   });
 
   registerRoutes(app);
+  registerTestCases(app);
 
   return app;
 }

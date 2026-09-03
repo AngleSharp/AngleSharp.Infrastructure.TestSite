@@ -1,0 +1,263 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Международный консорциум «ЕвроБеларусь»</title>
+
+  <!-- Bootstrap 5 only -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <!-- Font (keep original) -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;700&display=swap" rel="stylesheet">
+
+  <style>
+@font-face {
+    font-family: "roboto-example";
+    font-weight: normal;
+    font-style: normal;
+    src: url("/fonts/RobotoRegular/RobotoRegular.eot");
+    src: url("/fonts/RobotoRegular/RobotoRegular.eot#iefix") format("embedded-opentype"), url("/fonts/RobotoRegular/RobotoRegular.woff") format("woff"), url("/fonts/RobotoRegular/RobotoRegular.ttf") format("truetype");
+}
+
+@font-face {
+    font-family: "roboto-example";
+    font-weight: bold;
+    font-style: normal;
+    src: url("/fonts/RobotoBold/RobotoBold.eot");
+    src: url("/fonts/RobotoBold/RobotoBold.eot#iefix") format("embedded-opentype"), url("/fonts/RobotoBold/RobotoBold.woff") format("woff"), url("/fonts/RobotoBold/RobotoBold.ttf") format("truetype");
+}
+
+@font-face {
+    font-family: "gothic-regular";
+    font-weight: normal;
+    font-style: normal;
+    src: url("/fonts/CenturyGothicRegular.eot");
+    src: url("/fonts/CenturyGothicRegular.eot#iefix") format("embedded-opentype"), url("/fonts/CenturyGothicRegular.woff") format("woff"), url("/fonts/CenturyGothicRegular.ttf") format("truetype");
+}
+
+@font-face {
+    font-family: "gothic-bold";
+    font-weight: bold;
+    font-style: normal;
+    src: url("/fonts/CenturyGothicBold.eot");
+    src: url("/fonts/CenturyGothicBold.eot#iefix") format("embedded-opentype"), url("/fonts/CenturyGothicBold.woff") format("woff"), url("/fonts/CenturyGothicBold.ttf") format("truetype");
+}
+
+@font-face {
+    font-family: "gothic-italic";
+    font-weight: italic;
+    font-style: normal;
+    src: url("/fonts/CenturyGothicItalic.eot");
+    src: url("/fonts/CenturyGothicItalic.eot#iefix") format("embedded-opentype"), url("/fonts/CenturyGothicItalic.woff") format("woff"), url("/fonts/CenturyGothicItalic.ttf") format("truetype");
+}
+
+@font-face {
+    font-family: "gothic-italicBold";
+    font-weight: normal;
+    font-style: normal;
+    src: url("/fonts/CenturyGothicBoldItalic.eot");
+    src: url("/fonts/CenturyGothicBoldItalic.eot#iefix") format("embedded-opentype"), url("/fonts/CenturyGothicBoldItalic.woff") format("woff"), url("/fonts/CenturyGothicBoldItalic.ttf") format("truetype");
+}
+
+
+
+    /* ====== Base ====== */
+    :root{
+      --text:#222;
+      --muted:#6b6b6b;
+      --bar:#e6e6e6;    /* gray nav area */
+      --page:#ffffff;   /* page background */
+      --line:#dcdcdc;   /* light separators */
+      --dark:#2f2f2f;   /* footer */
+    }
+    html,body{height:100%}
+    body{ font-family:gothic-regular, "Roboto", sans-serif; font-weight:400; font-size:16px; color:var(--text); background:var(--page); }
+    img{max-width:100%; height:auto}
+    a{text-decoration:none}
+    a:hover{text-decoration:underline}
+
+    /* ====== Header ====== */
+    .header{ background:#fff; }
+    .header__top{ padding:.75rem 0; }
+    .header__logo img{ height:60px; }
+    .header__lang a{ color:#b9b9b9; var(--text); font-weight:600; margin-left:.75rem; }
+    .header__lang .selected { background: #f4f4f4; padding: .15rem; }
+    .header__search input{ border:1px solid var(--line); padding:.35rem .6rem; font-size:.95rem; }
+    .header__socials a{ display:inline-block; margin-left:.5rem; color:#444; }
+
+    /* ====== Main nav: first + last two on white, middle group on gray ====== */
+    .header__nav{ border-top:1px solid var(--line); border-bottom:1px solid var(--line); background:#fff; align: center}
+    .menu{ display:flex; align-items:center; gap:.75rem; padding:.35rem 0; }
+    .menu > a{ padding:.55rem .9rem; color:#b9b9b9; 333; font-weight:700; }
+    .menu > a:hover{ background:rgba(0,0,0,.03); text-decoration:none; }
+
+    /* Middle gray group */
+    .menu .gray{ display:flex; align-items:center; background:#b9b9b9;  var(--bar); }
+    .menu .gray a{ padding:.55rem .9rem; color:#333; font-weight:700; color: #fff;}
+/*    .menu .gray a:hover{ background:rgba(0,0,0,.04); } */
+    .menu .fix-left, .menu .fix-right{ width:.75rem; height:100%; background:#fff; }
+
+    /* Mobile nav */
+    @media (max-width: 991.98px){
+      .menu{ flex-wrap:wrap; }
+      .menu .gray{ width:100%; flex-wrap:wrap; }
+      .menu .fix-left,.menu .fix-right{ display:none; }
+      .menu > a{ padding:.5rem .5rem; }
+      .menu .gray a{ padding:.5rem .5rem; }
+    }
+
+    /* ====== Page ====== */
+    .news-page{ padding:2rem 0; }
+    .section-title{ font-size:28px; font-weight:700; margin-bottom:.5rem; }
+    .date-news{ color:var(--muted); margin-bottom:1rem; display:flex; gap:1rem; }
+    .lead{ font-size:18px; margin:1rem 0; }
+
+    /* Other news list — simple, no boxes */
+    .other-news{ margin-top:2rem; }
+    .news__item{ display:flex; gap:1rem; padding:1rem 0; border-top:1px solid var(--line); }
+    .news__item:first-child{ border-top:none; }
+    .news__item .left{ flex:0 0 260px; }
+    .news__item .left .img-wrapper{ position:relative; }
+    .news__item img{ width:100%; height:auto; display:block; }
+    .news__item .tag{ position:absolute; left:.5rem; bottom:.5rem; background:rgba(0,0,0,.75); color:#fff; font-size:.8rem; padding:.15rem .5rem; }
+    .news__item .right .title{ font-weight:700; color:var(--text); display:block; margin-bottom:.25rem; }
+    .news__item .right .date{ color:var(--muted); font-size:.9rem; }
+    .news__item .right .desc{ color:var(--muted); margin-top:.35rem; }
+
+    /* Sidebar feed */
+    .feed{ padding-left:2rem; }
+    .feed .feed-title{ font-weight:700; margin-bottom:.75rem; }
+    .feed .item{ display:flex; gap:.75rem; padding:.5rem 0; border-top:1px dashed var(--line); color:inherit; }
+    .feed .item:first-child{ border-top:none; }
+    .feed .item .date{ width:3.2rem; font-weight:700; color:#000; }
+
+    /* Footer */
+    footer{ background:var(--white); color:#3573b3; margin-top:2rem; text-transform: uppercase; line-height: 1.65;}
+    footer a{ color:#3573b3; #e6e6e6; text-transform: uppercase;}
+    .footer-bottom{ border-top:1px solid rgba(255,255,255,.15); font-size:.95rem; }
+  </style>
+</head>
+<body>
+  <header class="header">
+    <div class="header__container container">
+      <div class="header__top d-flex align-items-center justify-content-between gap-3">
+        <div class="header__logo"><a href="/"><img src="https://eurobelarus.info/images/new.eurobelarus/img/logo.png" alt="eurobelarus"/></a></div>
+        <div class="d-none d-md-block header__lang">
+          <a href="#" class="selected">BE/RU</a>
+          <!-- a href="#">EN</a -->
+        </div>
+        <div class="ms-auto d-none d-lg-block header__search">
+          <form action="/" method="get" role="search">
+            <input type="text" name="text" placeholder="Поиск..." required>
+          </form>
+        </div>
+        <div class="d-none d-md-block header__socials">
+          <a href="https://x.com/eurobelarusinfo" aria-label="X / Twitter">X.com</a>
+          <a href="https://www.facebook.com/eurobelarus" aria-label="Facebook">Facebook</a>
+        </div>
+      </div>
+      <!-- Main menu: first + last two on white; middle group on gray -->
+      <nav class="header__nav">
+        <div class="menu">
+          <a href="/about/">О нас</a>
+          <div class="gray">
+            <div class="fix-left" aria-hidden="true"></div>
+            <a href="/news/position/">Позиция</a>
+            <a href="/news/events/">События</a>
+            <a href="/news/analytics/">Аналитика и исследования</a>
+            <a href="/news/ads/">Анонсы и объявления</a>
+            <div class="fix-right" aria-hidden="true"></div>
+          </div>
+          <a href="/library/">Библиотека</a>
+          <a href="/video/">Видео</a>
+        </div>
+      </nav>
+    </div>
+  </header>
+
+  <!-- ===== Page ===== -->
+  <section class="news-page">
+    <div class="container">
+      <div class="row">
+            <div class="news__item">
+              <div class="left">
+                <div class="img-wrapper">
+                  <img src="https://eurobelarus.info/files/161/181/Belarus_Beehive_thumb1_1.png" alt="Belarus Beehive: семинар‑тренинг по продвижению повестки секторальных реформ">
+                  <div class="tag">Университет и образование</div>
+                </div>
+              </div>
+              <div class="right">
+                <a class="title" href="/news/ads/2023/01/17/belarus-beehive-seminar-trening-po-prodvizheniyu-povestki.html">Belarus Beehive: семинар-тренинг по продвижению повестки секторальных реформ</a>
+                <div class="date"><span>17.01.2023</span></div>
+                <div class="desc">Трехдневный семинар‑тренинг в рамках проекта Belarus Beehive.</div>
+              </div>
+            </div>
+
+</div>
+
+    </div>
+  </section>
+
+  <footer class="pt-4 pb-4 border-top">
+    <div class="container">
+      <div class="row g-4 mb-3">
+        <div class="col-6 col-md-3">
+          <div class="fw-bold mb-2">ЕвроБеларусь</div>
+          <ul class="list-unstyled small m-0">
+            <li><a href="/about/">О нас</a></li>
+            <li><a href="/contacts/">Контакты</a></li>
+            <li><a href="/names/">Имена</a></li>
+            <li><a href="/history/">История</a></li>
+            <li><a href="/partners/">Партнеры</a></li>
+            <li><a href="/library/">Библиотека</a></li>
+          </ul>
+        </div>
+        <div class="col-6 col-md-3">
+          <div class="fw-bold mb-2">Новости</div>
+          <ul class="list-unstyled small m-0">
+            <li><a href="/news/position/">Позиция</a></li>
+            <li><a href="/news/events/">События</a></li>
+            <li><a href="/news/analytics/">Аналитика и исследования</a></li>
+            <li><a href="/news/ads/">Анонсы и объявления</a></li>
+          </ul>
+        </div>
+        <div class="col-6 col-md-3">
+          <div class="fw-bold mb-2">Темы</div>
+          <ul class="list-unstyled small m-0">
+            <li><a href="/news/?NewsThemaID=9">Думать Беларусь</a></li>
+            <li><a href="/news/?NewsThemaID=10">Университет и образование</a></li>
+            <li><a href="/news/?NewsThemaID=11">Policy &amp; Politics</a></li>
+            <li><a href="/news/?NewsThemaID=12">High Tech Belarus</a></li>
+            <li><a href="/news/?NewsThemaID=13">Культура и наследие</a></li>
+            <li><a href="/news/?NewsThemaID=14">Инклюзивное общество</a></li>
+            <li><a href="/news/?NewsThemaID=15">Беларусь в мире</a></li>
+          </ul>
+        </div>
+        <div class="col-6 col-md-3">
+          <div class="fw-bold mb-2">Видео</div>
+          <ul class="list-unstyled small m-0">
+            <li><a href="/video/public/">Публичные мероприятия</a></li>
+            <li><a href="/video/interviews/">Интервью и выступления</a></li>
+            <li><a href="/video/education/">Образование Online</a></li>
+            <li><a href="/video/postmodernism/">Постмодерн и антропотехника</a></li>
+            <li><a href="/video/mysli/">Мысли вслух</a></li>
+            <li><a href="/video/urbi-et-orbi/">Urbi et Orbi</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom pt-3 d-flex flex-column flex-md-row align-items-center justify-content-between">
+        <a class="d-inline-flex align-items-center gap-2 text-decoration-none text-light" href="#">
+          <img src="https://eurobelarus.info/images/new.eurobelarus/img/logo.png" alt="eurobelarus" width="126"/>
+        </a>
+        <div class="mt-3 mt-md-0">Copyright © 2011–2025 Международный консорциум «ЕвроБеларусь»</div>
+        <div></div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

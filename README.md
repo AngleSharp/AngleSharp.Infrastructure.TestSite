@@ -42,6 +42,35 @@ The listen port and host can be overridden with the `PORT` (default `8080`) and 
 
 Routing is case-insensitive, matching the original ASP.NET behavior.
 
+### Test-case endpoints
+
+These stand in for third-party sites that AngleSharp's integration tests used to
+depend on, so the tests no longer reach out to the public internet. The captured
+pages under [`public/test-cases/`](public/test-cases/) are the real HTML of those
+sites at capture time.
+
+| Route | Method | Purpose |
+| --- | --- | --- |
+| `/test-cases/powerball` | GET | Real Powerball home page, served **gzip-encoded** (replaces `powerball.com`). |
+| `/test-cases/empireaerials` | GET | Real Empire Aerials page, served **gzip-encoded** (replaces `empireaerials.net`). |
+| `/test-cases/kommersant` | GET | Large gzip-encoded page (replaces `kommersant.ru/rss-list`; guards against a buffer-too-small bug). |
+| `/test-cases/eurobelarus` | GET | Gzip-encoded page (replaces `eurobelarus.info`; guards against a stuck stream). |
+| `/test-cases/europarl` | GET | A valid HTML document (replaces the `europarl.europa.eu` PDF URL). |
+| `/test-cases/status/:code` | GET | Responds with the given status code (100–999). |
+| `/test-cases/methods/get` | GET | `200` with an empty body for `GET`, otherwise `405`. |
+| `/test-cases/methods/post` | POST | `200` for `POST` with a body reflecting the request body, otherwise `405`. |
+| `/test-cases/methods/put` | PUT | `200` for `PUT` with a body reflecting the request body, otherwise `405`. |
+| `/test-cases/methods/delete` | DELETE | `200` with an empty body for `DELETE`, otherwise `405`. |
+| `/test-cases/user-agent` | GET | Reflects the `User-Agent` header as JSON. |
+| `/test-cases/robots` | GET | Plain-text `robots.txt` (`User-agent: *` / `Disallow: /deny`). |
+| `/test-cases/set-cookies` | GET | Sets a cookie per query parameter, then `302`-redirects to `get-cookies`. |
+| `/test-cases/get-cookies` | GET | Returns the request cookies as a JSON object. |
+| `/test-cases/redirect?url=` | GET | `302`-redirects to the URL in the `url` query parameter. |
+
+The `user-agent` and `*-cookies` endpoints mirror
+[httpbingo](https://httpbingo.org)'s exact JSON formatting (Go's two-space,
+sorted-key indentation) so the responses are byte-for-byte compatible.
+
 ## Docker
 
 A multi-stage [`Dockerfile`](Dockerfile) builds a small production image:
